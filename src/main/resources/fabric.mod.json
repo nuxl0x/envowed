@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "envowed",
+	"version": "${version}",
+	"name": "Envowed",
+	"description": "Your actions, they shall bear consequence.",
+	"authors": [
+		"nuxlox",
+        "Callumari"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/envowed/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"nuxlox.envowed.Envowed"
+		],
+		"fabric-datagen": [
+			"nuxlox.envowed.EnvowedDataGenerator"
+		]
+	},
+	"mixins": [
+		"envowed.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
