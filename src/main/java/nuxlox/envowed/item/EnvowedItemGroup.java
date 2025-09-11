@@ -40,7 +40,7 @@ public class EnvowedItemGroup {
 
     }
 
-    public static void initialize() {
+    public static void registerGroup() {
         registerItemGroup();
         addItemGroupItems();
     }

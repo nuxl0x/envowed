@@ -3,5 +3,8 @@
   "item.envowed.contract": "Contract",
   "item.envowed.signed_contract": "Signed Contract",
   "item.envowed.charter": "Charter",
-  "item.envowed.signed_charter": "Signed Charter"
+  "item.envowed.signed_charter": "Signed Charter",
+  "itemTooltip.envowed.contract1": "Use this item to sign this contract.",
+  "itemTooltip.envowed.contract2": "Signing this contract will temporarily bind your soul to it.",
+  "itemTooltip.envowed.contract3": "This allows you to empower yourself, at a cost."
 }

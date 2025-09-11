@@ -9,8 +9,9 @@
         "Callumari"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/nuxl0x/envowed",
+		"sources": "https://github.com/nuxl0x/envowed",
+        "issues": "https://github.com/nuxl0x/envowed/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/envowed/icon.png",
