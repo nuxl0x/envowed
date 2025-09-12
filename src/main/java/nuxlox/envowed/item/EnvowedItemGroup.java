@@ -17,7 +17,7 @@ public class EnvowedItemGroup {
             Registries.ITEM_GROUP.getKey(), new Identifier(Envowed.MOD_ID, "envowed"));
 
     public static final ItemGroup ENVOWED_ITEM_GROUP = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(BindingItems.CONTRACT))
+            .icon(() -> new ItemStack(BindingItems.CHARTER))
             .displayName(Text.translatable("itemGroup.envowed"))
             .build();
 
