@@ -2,9 +2,8 @@ package nuxlox.envowed.item.util;
 
 import net.minecraft.item.Item;
 
-public class CharterItem extends Item {
-    public CharterItem(Settings settings) {
+public class SignedCharterItem extends Item {
+    public SignedCharterItem(Settings settings) {
         super(settings);
     }
-
 }

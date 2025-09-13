@@ -6,16 +6,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import nuxlox.envowed.Envowed;
+import nuxlox.envowed.data.ContractData;
 import nuxlox.envowed.item.BindingItems;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Objects;
 
 public class ContractItem extends Item {
     public ContractItem(Settings settings) {
@@ -30,23 +32,36 @@ public class ContractItem extends Item {
             return TypedActionResult.pass(stack);
         }
 
+        ContractData contractData = ContractData.get((ServerWorld) world);
+        ItemStack signedContract = BindingItems.SIGNED_CONTRACT.getDefaultStack();
+
         NbtCompound nbt = stack.getOrCreateNbt();
         String contractorName = nbt.getString("contractorName");
         String contracteeName = nbt.getString("contracteeName");
 
-        if (Objects.equals(contractorName, "")) {
+        if (contractorName.isEmpty()) {
             nbt.putString("contractorName", user.getEntityName());
             stack.setNbt(nbt);
             updatePlayerInventory(user);
             return TypedActionResult.success(stack);
         }
 
-        if (Objects.equals(contracteeName, "")) {
+        if (contracteeName.isEmpty()) {
             nbt.putString("contracteeName", user.getEntityName());
+            contracteeName = user.getEntityName();
+        }
+        stack.setNbt(nbt);
+        signedContract.setNbt(nbt);
+        String contractInfo = contractorName + ":" + contracteeName;
+
+        if (contractData.checkForExistingEntry(contractInfo) == true) {
+            Envowed.LOGGER.error("Failed to create new ContractData entry due to entry with identical details already existing.");
+            return TypedActionResult.fail(stack);
         }
 
-        stack.setNbt(nbt);
-        updatePlayerInventory(user);
+        contractData.createNewEntry(contractInfo);
+
+        user.setStackInHand(hand, signedContract);
 
         return TypedActionResult.success(stack);
 
@@ -68,9 +83,7 @@ public class ContractItem extends Item {
 
         if (nbt != null && nbt.contains("contractorName")) {
             String contractorName = nbt.getString("contractorName");
-            String contracteeName = nbt.getString("contracteeName");
-            tooltip.add(Text.literal("Contractor Name: " + contractorName).formatted(Formatting.BOLD, Formatting.YELLOW));
-            tooltip.add(Text.literal("Contractee Name: " + contracteeName).formatted(Formatting.RED));
+            tooltip.add(Text.translatable("itemTooltip.envowed.contractor", contractorName).formatted(Formatting.GOLD));
         }
 
         super.appendTooltip(stack, world, tooltip, context);
