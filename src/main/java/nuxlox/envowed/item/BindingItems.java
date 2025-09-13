@@ -13,7 +13,5 @@ public class BindingItems extends ItemRegistrator {
     public static final Item CHARTER = register("charter", new CharterItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE)));
     public static final Item SIGNED_CHARTER = register("signed_charter", new SignedCharterItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE)));
 
-    public static final Item DEBUGGER = register("debugger", new DebuggerItem(new FabricItemSettings().maxCount(1)));
-
     public static void registerItems() {}
 }

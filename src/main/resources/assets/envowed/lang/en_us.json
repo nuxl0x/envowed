@@ -4,11 +4,19 @@
   "item.envowed.signed_contract": "Signed Contract",
   "item.envowed.charter": "Charter",
   "item.envowed.signed_charter": "Signed Charter",
+  "item.envowed.debugger": "Debugger",
   "itemTooltip.envowed.contract1": "Use this item to sign this contract.",
   "itemTooltip.envowed.contract2": "Signing this contract will temporarily bind your soul to it.",
   "itemTooltip.envowed.contract3": "This allows you to empower yourself, at a cost.",
-  "itemTooltip.envowed.signedContract1": "Represents a Contract between two people.",
+  "itemTooltip.envowed.signedContract1": "Represents a contract between two people.",
   "itemTooltip.envowed.signedContract2": "You are able to see the signatories below.",
-  "itemTooltip.envowed.contractor": "Contractor: %s",
-  "itemTooltip.envowed.contractee": "Contractee: %s"
+  "itemTooltip.envowed.contractor": "Bound to %s.",
+  "itemTooltip.envowed.contractee": "Signed by %s.",
+  "itemTooltip.envowed.charter1": "A irreversible agreement.",
+  "itemTooltip.envowed.charter2": "An everlasting vow.",
+  "itemTooltip.envowed.charter3": "By all means.",
+  "itemTooltip.envowed.charterer": "Bound to %s.",
+  "itemTooltip.envowed.signedCharter1": "An agreement as irreversible as time.",
+  "itemTooltip.envowed.signedCharter2": "A vow that will last beyond the end.",
+  "itemTooltip.envowed.chartered": "Signed by %s."
 }
