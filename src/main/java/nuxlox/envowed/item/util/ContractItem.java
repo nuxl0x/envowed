@@ -24,6 +24,8 @@ public class ContractItem extends Item {
         super(settings);
     }
 
+
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
@@ -54,10 +56,19 @@ public class ContractItem extends Item {
         signedContract.setNbt(nbt);
         String contractInfo = contractorName + ":" + contracteeName;
 
-        if (contractData.checkForExistingEntry(contractInfo) == true) {
-            Envowed.LOGGER.error("Failed to create new ContractData entry due to entry with identical details already existing.");
+        // Checks that this contractor and contractee do not have a contract in inverse circumstances.
+        String inverseContractInfo = contracteeName + ":" + contractorName;
+        if (contractData.checkForExistingEntry(inverseContractInfo) == true) {
+            Envowed.LOGGER.error("Failed to create new ContractData entry due to the contractor being contracted to the contractee.");
             return TypedActionResult.fail(stack);
         }
+
+        // Checks that the contractor and contractee are not the same person.
+        // Comment this code out if you are testing solo.
+        // if (Objects.equals(contractorName, contracteeName)) {
+        //     Envowed.LOGGER.error("Failed to create new ContractData entry due to the contractor and contractee being the same person.");
+        //     return TypedActionResult.fail(stack);
+        // }
 
         contractData.createNewEntry(contractInfo);
 
@@ -67,11 +78,15 @@ public class ContractItem extends Item {
 
     }
 
+
+
     public void updatePlayerInventory(PlayerEntity user) {
         if (user instanceof ServerPlayerEntity serverPlayer) {
             serverPlayer.getInventory().markDirty();
         }
     }
+
+
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
